@@ -1,5 +1,4 @@
 var fs = require('fs');
-var url = require('url');
 var path = require('path');
 var http = require('http');
 var server;
@@ -17,7 +16,7 @@ function pipeFileToResponse(res, file, type) {
 server = http.createServer(function (req, res) {
   req.setEncoding('utf8');
 
-  var parsed = url.parse(req.url, true);
+  var parsed = new URL(req.url);
   var pathname = parsed.pathname;
 
   console.log('[' + new Date() + ']', req.method, pathname);
